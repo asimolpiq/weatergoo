@@ -4,8 +4,8 @@ Hava Durumunu illere göre canlı listeleyebileceğiniz, 7 günlük hava durumu 
 
 ## ScreenShots
 
+[![image](https://r.resimlink.com/VC7WHkFaRnJs.png)](https://resimlink.com/VC7WHkFaRnJs)
 
-<img src="https://r.resimlink.com/VC7WHkFaRnJs.png" align="left" >
-<img src="https://r.resimlink.com/tIwqbGi.png" align="left" >
-<img src="https://r.resimlink.com/cFdBG.png" align="left" >
+[![image](https://r.resimlink.com/tIwqbGi.png)](https://resimlink.com/tIwqbGi)
 
+[![image](https://r.resimlink.com/tIwqbGi.png)](https://resimlink.com/tIwqbGi)
