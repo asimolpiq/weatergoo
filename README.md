@@ -2,15 +2,12 @@
 
 Hava Durumunu illere göre canlı listeleyebileceğiniz, 7 günlük hava durumu tahmini veren uygulama.
 
-## Getting Started
+## ScreenShots
 
-This project is a starting point for a Flutter application.
+[![ScreenShot](https://github.com/asimolpiq/weatergoo/blob/main/screenshots/1.png)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[![ScreenShot](https://github.com/asimolpiq/weatergoo/blob/main/screenshots/2.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+[![ScreenShot](https://github.com/asimolpiq/weatergoo/blob/main/screenshots/3.png)

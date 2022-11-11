@@ -43,217 +43,250 @@ class _MainScreenState extends State<MainScreen> with ProjectDioMixin {
   Widget build(BuildContext context) {
     DateTime now = DateTime.now().toLocal();
     String formattedDate = DateFormat('dd.MM.yyyy').format(now);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
-          children: [
-            ProjectMaterials().customSpace(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(flex: 2, child: ProjectIcons().appIconSVG),
-                Expanded(flex: 3, child: ProjectStrings().appbarTitle(context))
-              ],
-            ),
-            ProjectMaterials().customSpace(),
-            SearchField(
-              suggestions: Countrys().countryList,
-              searchInputDecoration: ProjectMaterials().searchDecoration(searchController),
-              controller: searchController,
-              onTap: (value) {
-                if (value != null) {
-                  setState(() {
-                    ProjectStrings.selectedValue = value;
-                    setState(() {
-                      fetch(country: value);
-                    });
-                  });
-                }
-              },
-            ),
-            ProjectMaterials().customSpace(),
-            Container(
-              padding: ProjectPaddings().midPadding,
-              height: 90,
-              decoration: BoxDecoration(color: ProjectColors().coffee, borderRadius: ProjectPaddings().radius20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              ProjectMaterials().customSpace(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            ProjectIcons().locationnSVG,
-                            Text(ProjectStrings.selectedValue?.toUpperCase() ?? "")
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Row(
-                          children: [ProjectIcons().calendar, Text(formattedDate)],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          child: Row(
-                            children: [
-                              Row(children: [
-                                ProjectIcons().thermometer,
-                                Text(weathers.isNotEmpty ? "${weathers.elementAt(0).degree}  °C" : "0 °C")
-                              ])
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ProjectIcons().about,
-                              Text(weathers.isNotEmpty ? "${weathers.elementAt(0).description}" : "Açık")
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  Expanded(flex: 2, child: ProjectIcons().appIconSVG),
+                  Expanded(
+                      flex: 3, child: ProjectStrings().appbarTitle(context))
                 ],
               ),
-            ),
-            ProjectMaterials().customSpace(),
-            Container(
-              padding: ProjectPaddings().boxPadding,
-              height: 300,
-              decoration: BoxDecoration(color: ProjectColors().coffee, borderRadius: ProjectPaddings().radius20),
-              child: Padding(
+              ProjectMaterials().customSpace(),
+              SearchField(
+                suggestions: Countrys().countryList,
+                searchInputDecoration:
+                    ProjectMaterials().searchDecoration(searchController),
+                controller: searchController,
+                onTap: (value) {
+                  if (value != null) {
+                    setState(() {
+                      ProjectStrings.selectedValue = value;
+                      setState(() {
+                        fetch(country: value);
+                      });
+                    });
+                  }
+                },
+              ),
+              ProjectMaterials().customSpace(),
+              Container(
                 padding: ProjectPaddings().midPadding,
+                height: 90,
+                decoration: BoxDecoration(
+                    color: ProjectColors().coffee,
+                    borderRadius: ProjectPaddings().radius20),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            'Günler',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.transparent, // Step 2 SEE HERE
-                              shadows: [Shadow(offset: Offset(0, -10), color: Colors.black)], // Step 3 SEE HERE
-                              decoration: TextDecoration.underline,
-                              decorationThickness: 5,
-                              decorationColor: ProjectColors().brown,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Durum',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.transparent, // Step 2 SEE HERE
-                              shadows: [Shadow(offset: Offset(0, -10), color: Colors.black)], // Step 3 SEE HERE
-                              decoration: TextDecoration.underline,
-                              decorationThickness: 5,
-                              decorationColor: ProjectColors().brown,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Gündüz',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.transparent, // Step 2 SEE HERE
-                              shadows: [Shadow(offset: Offset(0, -10), color: Colors.black)], // Step 3 SEE HERE
-                              decoration: TextDecoration.underline,
-                              decorationThickness: 5,
-                              decorationColor: ProjectColors().brown,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Gece',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.transparent, // Step 2 SEE HERE
-                              shadows: [Shadow(offset: Offset(0, -10), color: Colors.black)], // Step 3 SEE HERE
-                              decoration: TextDecoration.underline,
-                              decorationThickness: 5,
-                              decorationColor: ProjectColors().brown,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: weathers.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          margin: EdgeInsets.only(top: 5),
+                        Container(
                           child: Row(
                             children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  weathers[index].day ?? "",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Image.network(
-                                  weathers[index].icon ?? "",
-                                  width: 20,
-                                  height: 20,
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  weathers[index].degree ?? "",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  weathers[index].night ?? "",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
+                              ProjectIcons().locationnSVG,
+                              Text(
+                                  ProjectStrings.selectedValue?.toUpperCase() ??
+                                      "")
                             ],
                           ),
-                        );
-                      },
+                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              ProjectIcons().calendar,
+                              Text(formattedDate)
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Row(children: [
+                                  ProjectIcons().thermometer,
+                                  Text(weathers.isNotEmpty
+                                      ? "${weathers.elementAt(0).degree}  °C"
+                                      : "0 °C")
+                                ])
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ProjectIcons().about,
+                                Text(weathers.isNotEmpty
+                                    ? "${weathers.elementAt(0).description}"
+                                    : "Açık")
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
               ),
-            )
-          ],
+              ProjectMaterials().customSpace(),
+              Container(
+                padding: ProjectPaddings().boxPadding,
+                height: 300,
+                decoration: BoxDecoration(
+                    color: ProjectColors().coffee,
+                    borderRadius: ProjectPaddings().radius20),
+                child: Padding(
+                  padding: ProjectPaddings().midPadding,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: Text(
+                              'Günler',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.transparent, // Step 2 SEE HERE
+                                shadows: [
+                                  Shadow(
+                                      offset: Offset(0, -10),
+                                      color: Colors.black)
+                                ], // Step 3 SEE HERE
+                                decoration: TextDecoration.underline,
+                                decorationThickness: 5,
+                                decorationColor: ProjectColors().brown,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              'Durum',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.transparent, // Step 2 SEE HERE
+                                shadows: [
+                                  Shadow(
+                                      offset: Offset(0, -10),
+                                      color: Colors.black)
+                                ], // Step 3 SEE HERE
+                                decoration: TextDecoration.underline,
+                                decorationThickness: 5,
+                                decorationColor: ProjectColors().brown,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              'Gündüz',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.transparent, // Step 2 SEE HERE
+                                shadows: [
+                                  Shadow(
+                                      offset: Offset(0, -10),
+                                      color: Colors.black)
+                                ], // Step 3 SEE HERE
+                                decoration: TextDecoration.underline,
+                                decorationThickness: 5,
+                                decorationColor: ProjectColors().brown,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              'Gece',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.transparent, // Step 2 SEE HERE
+                                shadows: [
+                                  Shadow(
+                                      offset: Offset(0, -10),
+                                      color: Colors.black)
+                                ], // Step 3 SEE HERE
+                                decoration: TextDecoration.underline,
+                                decorationThickness: 5,
+                                decorationColor: ProjectColors().brown,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: weathers.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.only(top: 5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    weathers[index].day ?? "",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Image.network(
+                                    weathers[index].icon ?? "",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    weathers[index].degree ?? "",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    weathers[index].night ?? "",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
